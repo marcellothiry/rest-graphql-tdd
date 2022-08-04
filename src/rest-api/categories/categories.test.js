@@ -16,11 +16,11 @@ describe('Categories testing suite', () => {
     describe('Finding categories', () => {
         it('should return all categories with status 200', () => chai
             .request(api.url())
-            .get(`${api.VERSION}/healthcheck`)
+            .get(`${api.VERSION}/categories`)
             .then((res) => {
                 expect(res).to.have.status(200)
                 expect(res.body.status).to.equal(200)
-                expect(res.body.data).to.eql(CategoryRepository.findAll())
+                expect(res.body.data.categories).to.eql(CategoryRepository.findAll())
             })
         )
     })
