@@ -14,7 +14,7 @@ const getExpressApp = () => {
     const app = express()
     app.disable('x-powered-by')
     app.use(express.json())
-    setupRoutes(api.VERSION, app)
+    setupRoutes(app)
     return app
 }
 

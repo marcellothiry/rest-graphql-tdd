@@ -7,6 +7,8 @@ chai.use(chaiHttp)
 
 describe('Endpoints validity test suite', () => {
 
+    const API_VERSION = '/api/v1'
+
     before(async () => await startServer())
 
     after(async () => await stopServer())
@@ -15,7 +17,7 @@ describe('Endpoints validity test suite', () => {
 
         const checkInvalidEndpoint = (path, useVersion = true) => chai
             .request(api.url())
-            .get(useVersion ? `${api.VERSION}${path}` : path)
+            .get(useVersion ? `${API_VERSION}${path}` : path)
             .then((res) => {
                 expect(true).to.be.true // sonar expects at least one assertion in each test case
                 expect(res).to.have.status(400)

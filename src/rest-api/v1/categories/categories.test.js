@@ -1,12 +1,14 @@
 import chai, {expect} from 'chai'
 import chaiHttp from 'chai-http'
-import api from '../../settings/api.settings.js'
-import {startServer, stopServer} from '../../index.js'
-import CategoryRepository from '../../repositories/category-repository.js'
+import api from '../../../settings/api.settings.js'
+import {startServer, stopServer} from '../../../index.js'
+import CategoryRepository from '../../../repositories/category-repository.js'
 
 chai.use(chaiHttp)
 
 describe('Categories testing suite', () => {
+
+    const API_VERSION = '/api/v1'
 
     before(async () => await startServer())
 
@@ -16,7 +18,7 @@ describe('Categories testing suite', () => {
     describe('Finding categories', () => {
         it('should return all categories with status 200', () => chai
             .request(api.url())
-            .get(`${api.VERSION}/categories`)
+            .get(`${API_VERSION}/categories`)
             .then((res) => {
                 expect(res).to.have.status(200)
                 expect(res.body.status).to.equal(200)

@@ -1,5 +1,5 @@
-import {healthCheckRouter} from './healthcheck/healthcheck.controller.js'
-import {categoriesRouter} from './categories/categories.controller.js'
+import {healthCheckRouterV1} from './v1/healthcheck/healthcheck.controller.js'
+import {categoriesRouterV1} from './v1/categories/categories.controller.js'
 import api from '../settings/api.settings.js'
 
 const invalidEndpoint = (req, res, next) => {
@@ -11,8 +11,12 @@ const invalidEndpoint = (req, res, next) => {
     });
 }
 
-export const setupRoutes = (apiVersion, app) => {
-    app.use(`${apiVersion}/healthcheck`, healthCheckRouter)
-    app.use(`${apiVersion}/categories`, categoriesRouter)
+const setupV1Routes = (app, apiVersion) => {
+    app.use(`${apiVersion}/healthcheck`, healthCheckRouterV1)
+    app.use(`${apiVersion}/categories`, categoriesRouterV1)
+}
+
+export const setupRoutes = (app) => {
+    setupV1Routes(app, '/api/v1')
     app.use(invalidEndpoint)
 }
