@@ -1,7 +1,9 @@
 import {healthCheckRouter} from './healthcheck/healthcheck.controller.js'
 import {categoriesRouter} from './categories/categories.controller.js'
+import api from '../settings/api.settings.js'
 
-const invalidEndpoint = (_req, res, _next) => {
+const invalidEndpoint = (req, res, next) => {
+    if (req.originalUrl === api.GRAPHQL_PATH) return next()
     res.status(400).json({
         status: 400,
         data: null,

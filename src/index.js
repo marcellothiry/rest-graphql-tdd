@@ -48,7 +48,7 @@ export const startServer = async () => {
     server = apolloServer()
     await server.start()
     const app = getExpressApp()
-    server.applyMiddleware({ app })
+    server.applyMiddleware({ app, path: api.GRAPHQL_PATH })
     app.listen(api.PORT, () =>
         console.log(`Server ready at ${api.url()}${server.graphqlPath}`)
     )
