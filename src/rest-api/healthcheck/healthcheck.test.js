@@ -7,13 +7,9 @@ chai.use(chaiHttp)
 
 describe('Healthcheck testing suite', () => {
 
-    before(async () => {
-        await startServer()
-    })
+    before(async () => await startServer())
 
-    after(async () => {
-        await stopServer()
-    })
+    after(async () => await stopServer())
 
     describe('Ping', () => {
         it('should respond a simple status 200 for the healthcheck endpoint', () => chai
