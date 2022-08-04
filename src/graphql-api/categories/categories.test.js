@@ -25,9 +25,9 @@ describe('Categories testing suite (graphQL)', () => {
     after(async () => await stopServer())
 
     describe('Finding categories', () => {
-        it('should return all users (3)', () => chai
+        it('should return all categories (3)', () => chai
             .request(api.url())
-            .post('/graphql')
+            .post(api.GRAPHQL_PATH)
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
             .send(GET_ALL_CATEGORIES())
@@ -36,9 +36,9 @@ describe('Categories testing suite (graphQL)', () => {
                 expect(res).to.be.json
                 expect(res.body.data.categories).to.be.a('array')
                 expect(res.body.data.categories).to.have.lengthOf(3)
-                expect(res.body.data.categories[0].email).to.equal('spaces')
-                expect(res.body.data.categories[1].email).to.equal('fitness')
-                expect(res.body.data.categories[2].email).to.equal('womenshealth')
+                expect(res.body.data.categories[0].id).to.equal('spaces')
+                expect(res.body.data.categories[1].id).to.equal('fitness')
+                expect(res.body.data.categories[2].id).to.equal('womenshealth')
             })
         )
     })
