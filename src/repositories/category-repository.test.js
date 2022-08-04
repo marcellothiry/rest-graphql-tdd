@@ -31,22 +31,22 @@ describe('Category repository test suite', () => {
         }
         CategoryRepository.save(kids)
         const category = CategoryRepository.findById('kids')
-        expect(category).to.equal(kids)
+        expect(category).to.eql(kids)
     })
 
     it('should update category kids', () => {
         const newCategory = CategoryRepository.findById('kids')
         newCategory.title = 'Kids Wear & Toys'
         const saved = CategoryRepository.save(newCategory)
-        const expected = {
+        const kids = {
             id: 'kids',
             title: 'Kids Wear & Toys',
             c_node_gradient_upper: 'AB1234',
             c_node_gradient_lower: 'CD4321',
         }
-        expect(saved).to.equal(expected)
+        expect(saved).to.eql(kids)
         const category = CategoryRepository.findById('kids')
-        expect(category).to.equal(expected)
+        expect(category).to.eql(kids)
     })
 
     it('should remove the category kids', () => {
