@@ -18,8 +18,8 @@ describe('Endpoints validity test suite', () => {
             .get(useVersion ? `${api.VERSION}${path}` : path)
             .then((res) => {
                 expect(true).to.be.true // sonar expects at least one assertion in each test case
-                expect(res).to.have.status(404)
-                expect(res.body.status).to.equal(404)
+                expect(res).to.have.status(400)
+                expect(res.body.status).to.equal(400)
                 expect(res.body.data).to.equal(null)
                 expect(res.body.error).to.equal('The endpoint does not exist.')
             })
